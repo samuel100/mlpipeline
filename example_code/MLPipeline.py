@@ -4,6 +4,7 @@
 # serve
 
 from sklearn import linear_model
+import numpy as np
 
 class MLPipeline():
 
@@ -21,7 +22,7 @@ class MLPipeline():
         y = dataset.loc[:,'target']
         n = X.shape[0]
         model.fit(X[0:(n-1)], y[1:n])
-        
+
         return model
         
 
@@ -34,7 +35,7 @@ class MLPipeline():
         if len(self.pipeline_stack) == 0:
             return 0
         latest_model = self.pipeline_stack[-1]
-        p = latest_model.predict([datapoint.loc['input1':'input2']])[0]
+        p = np.round(latest_model.predict([datapoint.loc['input1':'input2']])[0])
 
         return p
     
