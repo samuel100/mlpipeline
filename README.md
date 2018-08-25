@@ -54,7 +54,7 @@ Here we see that whilst we start off using all the available data in the first s
 
 Later in this article we will use these different snapshot methods on synthetic data to better demonstrate which method to use.
 
-## Beware of Experimenter Bias
+## Beware of Parameter Shift
 
 Whilst a backtesting framework can reduce data leakage by ensuring that we are retraining our ML pipelines on data available at the time (i.e. no peeking ahead), care is needed with *parameters*. 
 
