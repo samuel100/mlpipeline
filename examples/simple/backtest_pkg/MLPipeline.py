@@ -4,6 +4,9 @@
 # serve
 
 from sklearn import linear_model
+from sklearn.feature_selection import SelectKBest
+from sklearn.feature_selection import f_regression
+from sklearn.pipeline import Pipeline
 import numpy as np
 
 class MLPipeline():
@@ -17,13 +20,16 @@ class MLPipeline():
     
     def model_build(self, dataset):
         # build a model
-        model = linear_model.LinearRegression(fit_intercept=False)
-        X = dataset.loc[:,'input1':'input2']
-        y = dataset.loc[:,'target']
-        n = X.shape[0]
-        model.fit(X[0:(n-1)], y[1:n])
+        n = len(dataset)
+        X = dataset.loc[:,'input1':'input4'][0:(n-1)]
+        y = dataset.loc[:,'target'][1:n]
 
-        return model
+        feature_filter = SelectKBest(f_regression, k=2)
+        model = linear_model.LinearRegression(fit_intercept=False)
+        my_pipeline = Pipeline([('feature_selection',feature_filter), ('linear_model', model)])
+        fitted_pipeline = my_pipeline.fit(X,y)
+
+        return fitted_pipeline
         
 
     def model_serve(self, model):
@@ -34,8 +40,8 @@ class MLPipeline():
         # deal with no model in the stack by returning 0
         if len(self.pipeline_stack) == 0:
             return 0
-        latest_model = self.pipeline_stack[-1]
-        p = np.round(latest_model.predict([datapoint.loc['input1':'input2']])[0])
+        latest_pipeline = self.pipeline_stack[-1]
+        p = np.round(latest_pipeline.predict([datapoint.loc['input1':'input4']])[0])
 
         return p
     

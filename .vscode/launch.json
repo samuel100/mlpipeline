@@ -8,7 +8,7 @@
             "name": "Python: Current File",
             "type": "python",
             "request": "launch",
-            "program": "/Users/samkemp/code/gh/mlpipeline/example_code/main.py"
+            "program": "/Users/samkemp/code/gh/mlpipeline/examples/simple/main.py"
         },
         {
             "name": "Python: Attach",
