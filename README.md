@@ -76,7 +76,5 @@ The code we have provided consists of 3 classes
 
 ## Experiments
 
-### Fixed process
-
-### Varying Process
+Take a look at [this](experiments.ipynb) notebook in the repo that takes you through running the backtesting framework on fixed and varying processes.
 
