@@ -6,7 +6,7 @@ Often Machine Learning (ML) literature shows the *Training-Validate-Serve* (TVS)
 
 The diagram shows that as our dataset grows through time we are not refitting our ML pipeline on newer data but instead making predictions (inferencing) based on a model trained from an increasingly distant past. The TVS pattern is a good approach if the underlying process we are modelling is *fixed* (does not vary though time) i.e.  
 
-$$y=f(\mathbf{x})+r$$
+$y=f(\mathbf{x})+r$
 
 where $y$ is the target (or response) variable we want to predict, $\mathbf{x}$ is a vector containing the input (or predictor) variables, $f$ is the underlying function that maps the input variables to the target variable (this is the function that a machine learning algorithm e.g. neural network will learn) and $r$ is the unseen error.
 
