@@ -50,7 +50,9 @@ Here we see that we are refitting the ML pipeline on newer data, but we are usin
 
 <img src="doc/imgs/sliding.png?raw=true" alt="tvs" width="400px"/>
 
-Here we see that whilst we start off using all the available data in the first snapshot as time moves in the backtest on we are using the most recent $n$ number of data points to fit our ML pipeline to.
+Here we see that whilst we start off using all the available data in the first snapshot as time moves in the backtest on we are using the most recent *n* number of data points to fit our ML pipeline to.
+
+To produce a backtesting framework it is critical that the data snapshot only contains data available a snapshot time (i.e. no peeking ahead). To this end, features like [Temporal Tables](https://docs.microsoft.com/en-us/sql/relational-databases/tables/temporal-tables?view=sql-server-2017) in SQL Server can be incredibly useful.
 
 Later in this article we will use these different snapshot methods on synthetic data to better demonstrate which method to use.
 
