@@ -6,15 +6,15 @@ Often Machine Learning (ML) literature shows the *Training-Validate-Serve* (TVS)
 
 The diagram shows that as our dataset grows through time we are not refitting our ML pipeline on newer data but instead making predictions (inferencing) based on a model trained from an increasingly distant past. The TVS pattern is a good approach if the underlying process we are modelling is *fixed* (does not vary though time) i.e.  
 
-$y=f(\mathbf{x})+r$
+![equation](https://latex.codecogs.com/gif.latex?y=f(\mathbf{x})+r)  
 
-where $y$ is the target (or response) variable we want to predict, $\mathbf{x}$ is a vector containing the input (or predictor) variables, $f$ is the underlying function that maps the input variables to the target variable (this is the function that a machine learning algorithm e.g. neural network will learn) and $r$ is the unseen error.
+where *y* is the target (or response) variable we want to predict, **x** is a vector containing the input (or predictor) variables, *f* is the underlying function that maps the input variables to the target variable (this is the function that a machine learning algorithm e.g. neural network will learn) and *r* is the unseen error.
 
-However, for most real-world applications (e.g. fraud prediction, loan default prediction, stock price forecasting) the underlying process will *vary* through time i.e.
+However, for many applications (e.g. fraud prediction, loan default prediction, stock price forecasting) the underlying process will *vary* through time i.e.
 
-$$y=f_t(\mathbf{x}) + r$$
+![equation1](https://latex.codecogs.com/gif.latex?y=f_t(\mathbf{x})+r)
 
-where the underlying function $f$ we need to model using an ML algorithm has a time dependency. In such a case, using the TVS pattern will lead to our predictive model becoming *stale* as new data is collected and we will observe large *tracking error* (the difference between our in-sample error and out-of-sample error).
+where the underlying function *f* we need to model using an ML algorithm has a time dependency. In such a case, using the TVS pattern will lead to our predictive model becoming *stale* as new data is collected and we will observe large *tracking error* (the difference between our in-sample error and out-of-sample error).
 
 The solution to the stale model problem is to periodically refit a machine learning pipeline (feature selection, training, business rules) as new data arrives. The refitting process can either be scheduled to occur based on time (e.g. the end of every month) or when the observed error of the model reaches a pre-determined level of unacceptability. The aim of this document is to provide guidance on how to refit machine learning pipelines by leveraging a *backtesting* paradigm. 
 
